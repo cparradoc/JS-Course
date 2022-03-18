@@ -15,5 +15,3 @@ console.log(tercero);*/
 const [primero, ...tercero] = numeros3;
 
 console.log(tercero);
-
-console.table(carrito4);
