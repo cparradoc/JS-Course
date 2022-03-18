@@ -1,5 +1,5 @@
 //Object literal
-const Producto10 = {
+const producto10 = {
     nombre: "Monitor 20 pulgadas",
     precio: 300,
     disponible: true
