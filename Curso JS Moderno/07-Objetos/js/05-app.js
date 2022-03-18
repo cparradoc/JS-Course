@@ -11,7 +11,6 @@ const Producto2 = {
             pais: 'China'
         }
     }
-    
 };
 
 
