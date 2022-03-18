@@ -1,5 +1,5 @@
 //Utilizado this para referirnos a un entorno en el que queremos actuar
-const Producto8 = {
+const producto8 = {
     nombre: "Monitor 20 pulgadas",
     precio: 300,
     disponible: true,
@@ -8,7 +8,7 @@ const Producto8 = {
     }
 };
 
-const Producto9 = {
+const producto9 = {
     nombre: "Monitor 30 pulgadas",
     precio: 370,
     disponible: true,
@@ -17,6 +17,6 @@ const Producto9 = {
     }
 };
 
-Producto8.mostrarInfo();
-Producto9.mostrarInfo();
+producto8.mostrarInfo();
+producto9.mostrarInfo();
 
