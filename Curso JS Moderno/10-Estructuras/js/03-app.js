@@ -3,7 +3,7 @@
 const dinero = 100;
 const totalAPagar = 300;
 
-if( dinero > totalAPagar) {
+if( dinero => totalAPagar) {
     console.log("Podemos pagar");
 } else {
     console.log("No podemos pagar");
