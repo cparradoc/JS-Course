@@ -26,46 +26,49 @@ const datosBusqueda = {
 
 //Eventos
 document.addEventListener('DOMContentLoaded', () => {
-    mostrarAutos();
+    mostrarAutos(autos);
 
     llenarSelect();
 });
 
 //Event listener para los resultados
-marca.addEventListener('change', () => {
+marca.addEventListener('change', (e) => {
     datosBusqueda.marca = e.target.value;
 
     filtrarAuto();
 });
 
-year.addEventListener('change', () => {
+year.addEventListener('change', (e) => {
     datosBusqueda.year = e.target.value;
 
     filtrarAuto();
 });
 
-minimo.addEventListener('change', () => {
+minimo.addEventListener('change', (e) => {
     datosBusqueda.minimo = e.target.value;
 });
 
-maximo.addEventListener('change', () => {
+maximo.addEventListener('change', (e) => {
     datosBusqueda.maximo = e.target.value;
 });
 
-puertas.addEventListener('change', () => {
+puertas.addEventListener('change', (e) => {
     datosBusqueda.puertas = e.target.value;
 });
 
-transmision.addEventListener('change', () => {
+transmision.addEventListener('change', (e) => {
     datosBusqueda.transmision = e.target.value;
 });
 
-color.addEventListener('change', () => {
+color.addEventListener('change', (e) => {
     datosBusqueda.color = e.target.value;
 });
 
 //Funciones
-function mostrarAutos() {
+function mostrarAutos(autos) {
+
+    limpiarHtml();
+
     autos.forEach( auto => {
         const { marca, modelo, year, puertas, transmision, precio, color} = auto
         const autoHTML = document.createElement('p');
@@ -75,6 +78,12 @@ function mostrarAutos() {
 
         resultado.appendChild(autoHTML);
     });
+}
+
+function limpiarHtml() {
+    while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild);
+    }
 }
 
 //Genera los años del select
@@ -90,6 +99,8 @@ function llenarSelect() {
 
 function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
+
+    mostrarAutos(resultado);
 }
 
 function filtrarMarca(auto) {
