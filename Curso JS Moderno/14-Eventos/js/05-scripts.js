@@ -3,7 +3,7 @@ window.addEventListener('scroll', () => {
     //console.log(window.scrollY +'px');
 
     const premium = document.querySelector('.premium');
-    //a qué distancia se encuentra el elemento del scroll
+    //a qué distancia se encuentra el elemento respecto a la ventana de visualización
     const ubicacicion = premium.getBoundingClientRect(); 
 
     if(ubicacicion.top < 100) { //solo lo estamos comprobando por arriba
