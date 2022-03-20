@@ -1,5 +1,6 @@
 //Variables
 
+
 const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const listaCursos = document.querySelector('#lista-cursos');
@@ -35,10 +36,24 @@ function leerDatosCurso(curso) {
 
     };
 
-    //Agrega elementos al array de articulos
-    articulosCarrito = [...articulosCarrito, infoCurso];
+    //Revisa si un elemento ya existe en el carrito
+    const existe = articulosCarrito.some( curso => curso.id === infoCurso.id);
 
-    console.log(articulosCarrito);
+    //Agrega elementos al array de articulos
+    if(existe) {
+        const cursos = articulosCarrito.map( curso => {
+            if(curso.id === infoCurso.id) {
+                curso.cantidad++;
+                return curso;
+            } else {
+                return curso;
+            }
+        });
+        articulosCarrito = [...cursos];
+    } else {
+        articulosCarrito = [...articulosCarrito, infoCurso];
+    }
+    
 
     carritoHTML();
 }
