@@ -1,14 +1,63 @@
 //Variables
-const resultado = document.querySelector('#resultado');
+const marca = document.querySelector('#marca');
 const year = document.querySelector('#year');
+const minimo = document.querySelector('#minimo');
+const maximo = document.querySelector('#maximo');
+const puertas = document.querySelector('#puertas');
+const transmision = document.querySelector('#transmision');
+const color = document.querySelector('#color');
+
+
+const resultado = document.querySelector('#resultado');
+
 const max = new Date().getFullYear();
 const min = max - 10;
+
+const datosBusqueda = {
+    marca: '',
+    modelo: '',
+    year: '',
+    minimo: '',
+    maximo: '',
+    puertas: '',
+    transmision: '',
+    color: ''
+}
 
 //Eventos
 document.addEventListener('DOMContentLoaded', () => {
     mostrarAutos();
 
     llenarSelect();
+});
+
+//Event listener para los resultados
+marca.addEventListener('change', () => {
+    datosBusqueda.marca = e.target.value;
+});
+
+year.addEventListener('change', () => {
+    datosBusqueda.year = e.target.value;
+});
+
+minimo.addEventListener('change', () => {
+    datosBusqueda.minimo = e.target.value;
+});
+
+maximo.addEventListener('change', () => {
+    datosBusqueda.maximo = e.target.value;
+});
+
+puertas.addEventListener('change', () => {
+    datosBusqueda.puertas = e.target.value;
+});
+
+transmision.addEventListener('change', () => {
+    datosBusqueda.transmision = e.target.value;
+});
+
+color.addEventListener('change', () => {
+    datosBusqueda.color = e.target.value;
 });
 
 //Funciones
