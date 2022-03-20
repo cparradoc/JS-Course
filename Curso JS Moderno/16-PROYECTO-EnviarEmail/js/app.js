@@ -1,5 +1,6 @@
 //Variables
 const btnEnviar = document.querySelector('#enviar');
+const btnReset = document.querySelector('#resetBtn');
 const formulario = document.querySelector('#enviar-mail');
 const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -17,6 +18,12 @@ function eventListeners() {
     email.addEventListener('blur', validarFormulario); //El evento sale cuando te sacas del campo de texto
     asunto.addEventListener('blur', validarFormulario);
     mensaje.addEventListener('blur', validarFormulario);
+
+    btnReset.addEventListener('click', resetearFormulario);
+
+    //Enviar email
+    formulario.addEventListener('submit', enviarEmail);
+
 }
 
 function iniciarApp() {
@@ -78,4 +85,33 @@ function mostrarError(mensaje) {
         formulario.appendChild(mensajeError);
      }
 
+}
+
+function enviarEmail(e) {
+    e.preventDefault();
+
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'flex';
+
+    setTimeout(() => {
+        spinner.style.display = 'none';
+        const parrafo = document.createElement('p');
+        parrafo.textContent = 'El mensaje se envió correctamente';
+        parrafo.classList.add('text-center', 'my-10', 'p-2', 'bg-green-500', 'text-white', 'font-bold');
+
+        //Inserta el mensaje antes que el spinner
+        formulario.insertBefore(parrafo, spinner);
+
+        setTimeout(() => {
+            parrafo.remove();
+            resetearFormulario();
+            iniciarApp();
+        }, 5000);
+    }, 3000);
+
+}
+
+
+function resetearFormulario() {
+    formulario.reset();
 }
