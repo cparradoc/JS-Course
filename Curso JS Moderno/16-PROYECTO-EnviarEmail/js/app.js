@@ -27,7 +27,7 @@ function validarFormulario(e) {
 
         //Elimina los errores...
         const error = document.querySelector('p.error');
-        if(error !== null) {
+        if(error) {
             error.remove();
         }
 
@@ -45,7 +45,7 @@ function validarFormulario(e) {
         
         if (regex.test(e.target.value)) {
             const error = document.querySelector('p.error');
-            if(error !== null) {
+            if(error) {
                 error.remove();
             }
 
