@@ -105,3 +105,17 @@ function filtrarYear(auto) {
     }
     return auto;
 }
+
+function filtrarMinimo(auto) {
+    if (datosBusqueda.minimo) {
+        return auto.minimo === parseInt(datosBusqueda.minimo);
+    }
+    return auto;
+}
+
+function filtrarMaximo(auto) {
+    if (datosBusqueda.maximo) {
+        return auto.maximo === parseInt(datosBusqueda.maximo);
+    }
+    return auto;
+}
