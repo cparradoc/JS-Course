@@ -96,7 +96,7 @@ Seguro.prototype.cotizarSeguro = function() {
 
     //Mostrar el spinner
     const spinner = document.querySelector('#cargando');
-    spinner.style.display = 'block';
+    spinner.style.display = 'none';
     setTimeout(() => {
         spinner.remove();
         resultadoDiv.appendChild(div);
