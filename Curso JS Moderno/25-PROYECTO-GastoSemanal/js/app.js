@@ -19,7 +19,7 @@ function eventListeners() {
 function preguntarPresupuesto() {
     const presupuestoUsuario = prompt('¿Cuál es tu presupuesto?');
 
-    if(presupuestoUsuario === '' || presupuestoUsuario === null || isNaN(preguntarPresupuesto)) {
+    if(presupuestoUsuario === '' || presupuestoUsuario === null || isNaN(presupuestoUsuario) || presupuestoUsuario <= 0) {
         window.location.reload();
     }
 }
