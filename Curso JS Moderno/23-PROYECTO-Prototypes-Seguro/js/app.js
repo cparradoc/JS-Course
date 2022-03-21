@@ -96,9 +96,9 @@ Seguro.prototype.cotizarSeguro = function() {
 
     //Mostrar el spinner
     const spinner = document.querySelector('#cargando');
-    spinner.style.display = 'none';
+    spinner.style.display = 'block';
     setTimeout(() => {
-        spinner.remove();
+        spinner.style.display = 'none';
         resultadoDiv.appendChild(div);
     }, 3000);
  }
@@ -137,9 +137,17 @@ Seguro.prototype.cotizarSeguro = function() {
      } else {
         ui.mostrarMensaje('Cotizando...', 'exito');
 
+        //Ocultar cotizaciones previas
+        const resultados = document.querySelector('#resultado div');
+        if (resultados !== null) {
+            resultados.remove();
+        }
+
+        //Instanciar el seguro
         const seguro = new Seguro(marca, year, tipo);
         const total = seguro.cotizarSeguro();
 
+        //Utilizar el prototype que va a cotizar
         ui.mostrarResultado(seguro, total);
      }
  }
