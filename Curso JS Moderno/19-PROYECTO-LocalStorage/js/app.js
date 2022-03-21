@@ -8,7 +8,16 @@ eventListeners();
 
 
 function eventListeners() {
+    //Cuando el usuario agrega un nuevo tweet
     formulario.addEventListener('submit', agregarTweet);
+    //Cuando el documento está listo
+    document.addEventListener('DOMContentLoaded', () => {
+        tweets = JSON.parse(localStorage.getItem('tweets')) || [];
+
+        console.log(tweets);
+        crearHtml();
+    }); 
+
 }
 
 
@@ -57,10 +66,16 @@ function crearHtml() {
             listaTweets.appendChild(li);
         });
     }
+
+    sincronizarStorage();
 }
 
 function limpiarHtml() {
     while(listaTweets.firstChild) {
         listaTweets.removeChild(listaTweets.firstChild);
     }
+}
+
+function sincronizarStorage() {
+    localStorage.setItem('tweets', JSON.stringify(tweets));
 }
