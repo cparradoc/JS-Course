@@ -26,6 +26,10 @@ class Citas {
     eliminarCita(id) {
         this.citas = this.citas.filter( cita => cita.id !== id);
     }
+
+    editarCita(citaActualizada) {
+        this.citas = this.citas.map( cita => cita.id === citaActualizada.id ? citaActualizada : cita);
+    }
 }
 
 class UI {
@@ -175,8 +179,7 @@ function nuevaCita(e) {
         ui.imprimirAlerta('Editado correctamente');
 
         //Pasar el objeto de la cita a edición
-
-
+        administrarCitas.editarCita({...citaObj});
         
         //Cambiar texto del botón
         formulario.querySelector('button[type="submit"]'),textContent = 'Crear cita';
@@ -225,7 +228,7 @@ function eliminarCita(id) {
 }
 
 function cargarEdicion(cita){
-    const {mascota, propietario, telefono, fecha, hora, sintomas} = cita;
+    const {mascota, propietario, telefono, fecha, hora, sintomas, id} = cita;
 
     //Lenar los inputs
     mascotaInput.value = mascota;
@@ -245,7 +248,7 @@ function cargarEdicion(cita){
     citaObj.id = id;
 
     //Cambiar texto del botón
-    formulario.querySelector('button[type="submit"]'),textContent = 'Guardar Cambios';
+    formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
 
     editando = true;
 }
