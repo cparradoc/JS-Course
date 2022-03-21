@@ -23,6 +23,12 @@ class Presupuesto {
     //Se van agregando gastos
     nuevoGasto(gasto) {
         this.gastos = [...this.gastos, gasto];
+        this.calcularRestante();
+    }
+
+    calcularRestante() {
+        const gastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0 );
+        this.restante = this.presupuesto - gastado;
     }
 }
 
@@ -63,7 +69,7 @@ class UI {
             nuevoGasto.className = 'list-group-item d-flex justify-content-between align-items-center';
             nuevoGasto.dataset.id = id;
 
-            nuevoGasto.innerHTML = `${nombre}<span class="bas¡dge badge-primary badge-pill" ${cantidad} </span>`;
+            nuevoGasto.innerHTML = `${nombre}<span class="badge badge-primary badge-pill"> $ ${cantidad} </span>`;
 
             const btnBorrar = document.createElement('button');
             btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
@@ -80,6 +86,32 @@ class UI {
         while(gastoListado.firstChild) {
             gastoListado.removeChild(gastoListado.firstChild);
         }
+    }
+
+    actualizarRestante(restante) {
+        document.querySelector('#restante').textContent = restante;
+    }
+
+    comprobarPresupuesto(presupuestoObj) {
+        const {presupuesto, restante} = presupuestoObj;
+        
+        const restanteDiv = document.querySelector('.restante');
+
+        //Comprobar 25%
+        if((presupuesto / 4) > restante) {
+            restanteDiv.classList.remove('alert-success', 'alert-warning');
+            restanteDiv.classList.add('alert-danger');
+        } else if((presupuesto / 2) > restante) {
+            restanteDiv.classList.remove('alert-success', 'alert-danger');
+            restanteDiv.classList.add('alert-warning');
+        }
+
+        if (restante <= 0) {
+            ui.imprimirAlerta('El presupuesto se ha agotado', 'error');
+
+            formulario.querySelector('button[type="submit"]').disabled = true;
+        }
+
     }
 }
 
@@ -124,8 +156,12 @@ function agregarGasto(e) {
 
     ui.imprimirAlerta('Gasto agregado correctamente');
 
-    const {gastos} = presupuesto;
+    const {gastos, restante} = presupuesto;
     ui.agregarGastoListado(gastos);
+
+    ui.actualizarRestante(restante);
+
+    ui.comprobarPresupuesto(presupuesto);
 
     formulario.reset();
 }
