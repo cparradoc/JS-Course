@@ -19,6 +19,11 @@ class Presupuesto {
         this.restante = Number(presupuesto);
         this.gastos = [];
     }
+
+    //Se van agregando gastos
+    nuevoGasto(gasto) {
+        this.gastos = [...this.gastos, gasto];
+    }
 }
 
 class UI {
@@ -70,17 +75,26 @@ function agregarGasto(e) {
     e.preventDefault();
 
     //Leer campos
-    const gasto = document.querySelector('#gasto').value;
-    const cantidad = document.querySelector('#cantidad').value;
+    const nombre = document.querySelector('#gasto').value;
+    const cantidad = Number(document.querySelector('#cantidad').value);
 
     //Validar
-    if (gasto === '' || cantidad === '') {
+    if (nombre === '' || cantidad === '') {
         ui.imprimirAlerta('Ambos campos son obligatorios', 'error');
         return;
     } else if (cantidad <= 0 || isNaN(cantidad)){
         ui.imprimirAlerta('Cantidad no válida');
         return;
     }
+
+
+    const gasto = {nombre, cantidad, id: Date.now()};
+
+    presupuesto.nuevoGasto(gasto);
+
+    ui.imprimirAlerta('Gasto agregado correctamente');
+
+    formulario.reset();
 }
 
 
