@@ -21,6 +21,25 @@
     }
  }
 
+ UI.prototype.mostrarMensaje = function (mensaje, tipo) {
+    const div = document.createElement('div');
+
+    if (tipo === 'error') {
+        div.classList.add('error');
+    } else {
+        div.classList.add('correcto');
+    }
+    div.classList.add('mensaje','mt-1o');
+    div.textContent = mensaje;
+
+    const formulario = document.querySelector('#cotizar-seguro');
+    formulario.insertBefore(div, document.querySelector('#resultado'));
+
+    setTimeout(() => {
+        div.remove();
+    }, 3000);
+ } 
+
 
  const ui = new UI();
 
@@ -51,6 +70,10 @@
      const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
      if(marca === '' || year === '' || tipo === '') {
-         console.log('no pasó la validación');
+         ui.mostrarMensaje('Todos los campos son obligatorios', 'error');
+         return;
+     } else {
+        ui.mostrarMensaje('Cotizando...', 'exito');
      }
  }
+
