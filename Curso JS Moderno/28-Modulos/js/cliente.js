@@ -30,3 +30,11 @@ export class Cliente {
         return `Cliente: ${this.nombre} - Ahorro: ${this.ahorro}`;
     }
 }
+
+
+//No puede haber dos export defaults, por eso da igual el nombre que le pongas al importarla
+//También se puede dejar sin nombre
+//Mejor ponerle nombre y que se corresponda
+export default function nuevaFuncion() {
+    console.log("Este es el export default");
+}
