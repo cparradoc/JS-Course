@@ -19,5 +19,8 @@ function obtenerDatos() {
         .then( datos => {
             console.log(datos);
         })
+        .catch (error => {
+            console.log(error);
+        });
         
 }
