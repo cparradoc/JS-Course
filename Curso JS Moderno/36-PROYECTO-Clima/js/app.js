@@ -46,11 +46,38 @@ function consultarAPI(ciudad, pais) {
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {
+            limpiarHTML();
             if(datos.cod === '404') {
                 mostrarError('Ciudad no encontrada');
-            } else {
-                console.log(datos);
+                return;
             }
+            mostrarClima(datos);
         });
 
+}
+
+function mostrarClima(datos) {
+    const { main: {temp, temp_max, temp_min}} = datos;
+
+    const centigrados = parseFloat(temp);
+
+    const actual = document.createElement('p');
+    actual.innerHTML = `${centigrados} &#8451;`;
+    actual.classList.add('font-bold','text-6xl');
+
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.classList.add('text-center', 'text-white');
+    resultadoDiv.appendChild(actual);
+
+    resultado.appendChild(resultadoDiv);
+}
+
+function kelvinACentigrados(grados) {
+    return parseFloat(grados - 273.15);
+}
+
+function limpiarHTML() {
+    while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild);
+    }
 }
