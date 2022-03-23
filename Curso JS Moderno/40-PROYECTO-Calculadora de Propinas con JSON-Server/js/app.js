@@ -126,6 +126,10 @@ function agregarPlatillo(producto) {
         } else {
             pedido = [...pedido, producto];
         }
+    } else {
+        //Eliminar elementos cuando la cantidad es 0
+        const resultado = pedido.filter( articulo => articulo.id !== producto.id);
+        cliente.pedido = resultado;
+
     }
-    console.log(pedido);
 }
