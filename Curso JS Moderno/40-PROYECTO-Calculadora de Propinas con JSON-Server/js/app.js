@@ -95,7 +95,7 @@ function mostrarPlatillos(platillos) {
         };
 
         const agregar = document.createElement('div');
-        agregar.classList.add('col-md-2');
+        agregar.classList.add('col-md-2', 'py-3');
         agregar.appendChild(inputCantidad);
 
         row.appendChild(nombre);
@@ -123,12 +123,12 @@ function agregarPlatillo(producto) {
             cliente.pedido = [...pedidoActualizado];
 
         } else {
-            pedido = [...pedido, producto];
+            cliente.pedido = [...pedido, producto];
         }
     } else {
         //Eliminar elementos cuando la cantidad es 0
         const resultado = pedido.filter( articulo => articulo.id !== producto.id);
-        cliente.pedido = [...resultado];
+        cliente.pedido = resultado;
 
     }
 
@@ -175,8 +175,8 @@ function actualizarResumen() {
     const grupo = document.createElement('ul');
     grupo.classList.add('list-group');
 
+    
     const {pedido} = cliente;
-    console.log(pedido);
     pedido.forEach( articulo => {
         const {nombre, cantidad, precio, id} = articulo;
 
