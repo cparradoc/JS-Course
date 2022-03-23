@@ -108,5 +108,9 @@ function mostrarPlatillos(platillos) {
 }
 
 function agregarPlatillo(producto) {
-    
+    let {pedido} = cliente;
+    if(producto.cantidad > 0) {
+        pedido = [...pedido, producto];
+    }
+    console.log(pedido);
 }
