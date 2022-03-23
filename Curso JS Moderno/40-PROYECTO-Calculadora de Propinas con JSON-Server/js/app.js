@@ -66,7 +66,6 @@ function obtenerPlatillos() {
 function mostrarPlatillos(platillos) {
     const contenidoPlatillos = document.querySelector('#platillos .contenido');
     platillos["platillos"].forEach( platillo => {
-        console.log(platillo.nombre);
         const row = document.createElement('div');
         row.classList.add('row', 'py-3', 'border-top');
         
@@ -172,9 +171,55 @@ function actualizarResumen() {
     heading.textContent = 'Platillos consumidos: ';
     heading.classList.add('my-4', 'text-center');
 
+    //Iterar sobre el array de pedidos
+    const grupo = document.createElement('ul');
+    grupo.classList.add('list-group');
+
+    const {pedido} = cliente;
+    console.log(pedido);
+    pedido.forEach( articulo => {
+        const {nombre, cantidad, precio, id} = articulo;
+
+        const lista = document.createElement('li');
+        lista.classList.add('list-group-item');
+
+        const nombreEL = document.createElement('h4');
+        nombreEL.classList.add('my-4');
+        nombreEL.textContent = nombre;
+
+        const cantidadEL = document.createElement('p');
+        cantidadEL.classList.add('fw-bold');
+        cantidadEL.textContent = 'Cantidad: ';
+        
+        const cantidadValor = document.createElement('span');
+        cantidadValor.classList.add('fw-normal');
+        cantidadValor.textContent = cantidad;
+
+        cantidadEL.appendChild(cantidadValor);
+
+        const precioEL = document.createElement('p');
+        precioEL.classList.add('fw-bold');
+        precioEL.textContent = 'Precio: ';
+        
+        const precioValor = document.createElement('span');
+        precioValor.classList.add('fw-normal');
+        precioValor.textContent = `${precio}$`;
+
+        precioEL.appendChild(precioValor);
+
+        //Agregar elementos al li
+        lista.appendChild(nombreEL);
+        lista.appendChild(cantidadEL);
+        lista.appendChild(precioEL);
+
+        //Agregar lista al grupo principal
+        grupo.appendChild(lista);
+    });
+
     resumen.appendChild(mesa);
     resumen.appendChild(hora);
     resumen.appendChild(heading);
+    resumen.appendChild(grupo);
     
     contenido.appendChild(resumen);
 
