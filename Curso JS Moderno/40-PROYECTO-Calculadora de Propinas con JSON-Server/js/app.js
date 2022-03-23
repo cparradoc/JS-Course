@@ -53,6 +53,21 @@ function obtenerPlatillos() {
 
     fetch(url)
     .then(respuesta => respuesta.json())
-    .then( resultado => console.log(resultado))
+    .then( resultado => mostrarPlatillos(resultado))
     .catch(error => console.log(error));
+}
+
+function mostrarPlatillos(platillos) {
+    const contenidoPlatillos = document.querySelector('#platillos .contenido');
+    platillos["platillos"].forEach( platillo => {
+        console.log(platillo.nombre);
+        const row = document.createElement('div');
+        row.classList.add('row');
+        
+        const nombre = document.createElement('div');
+        nombre.classList.add('col-md-4');
+        nombre.textContent = platillo.nombre;
+        row.appendChild(nombre);
+        contenidoPlatillos.appendChild(row);
+    });
 }
