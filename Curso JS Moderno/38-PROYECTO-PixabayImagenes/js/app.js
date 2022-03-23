@@ -1,5 +1,6 @@
 const formulario = document.querySelector('#formulario');
 const resultado = document.querySelector('#resultado');
+const paginacionDiv = document.querySelector('#paginacion');
 const registrosPorPagina = 40;
 let totalPaginas;
 let iterador;
@@ -92,9 +93,32 @@ function mostrarImagenes(imagenes) {
         `;
     });
 
+    limpiarHTML();
+
     imprimirIterador();
 }
 
 function imprimirIterador() {
     iterador = crearPaginador(totalPaginas);
+
+    while(true) {
+        const {value, done} = iterador.next();
+        if(done) {
+            return;
+        }
+
+        const boton = document.createElement('a');
+        boton.href = '#';
+        boton.dataset.pagina = value;
+        boton.textContent = value;
+        boton.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'mb-4', 'uppercase', 'rounded');
+
+        paginacionDiv.appendChild(boton);
+    }
+}
+
+function limpiarHTML() {
+    while (paginacionDiv.firstChild) {
+        paginacionDiv.removeChild(paginacionDiv.firstChild);
+    }
 }
