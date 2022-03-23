@@ -217,11 +217,20 @@ function actualizarResumen() {
 
         subtotalEL.appendChild(subtotalValor);
 
+        //Botón para eliminar
+        const btnEliminar = document.createElement('button');
+        btnEliminar.classList.add('btn', 'btn-danger');
+        btnEliminar.textContent = 'Eliminar del pedido';
+        btnEliminar.onclick = function() {
+            eliminarProducto(id);
+        }
+
         //Agregar elementos al li
         lista.appendChild(nombreEL);
         lista.appendChild(cantidadEL);
         lista.appendChild(precioEL);
         lista.appendChild(subtotalEL);
+        lista.appendChild(btnEliminar);
 
         //Agregar lista al grupo principal
         grupo.appendChild(lista);
@@ -245,4 +254,14 @@ function limpiarHTML() {
 
 function calcularSubtotal(precio, cantidad) {
     return `${precio * cantidad} $`;
+}
+
+function eliminarProducto(id) {
+    const {pedido} = cliente;
+    const resultado = pedido.filter( articulo => articulo.id !== id);
+    cliente.pedido = resultado;
+
+    limpiarHTML();
+
+    actualizarResumen();
 }
