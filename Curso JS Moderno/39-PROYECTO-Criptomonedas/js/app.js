@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function consultarCriptomonedas() {
     const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
 
+
     fetch(url)
     .then(respuesta => respuesta.json())
     .then(resultado => obtenerCriptominedas(resultado.Data))
@@ -78,6 +79,9 @@ function consultarAPI() {
     const {moneda, criptomoneda} = objBusqueda;
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
 
+
+    mostrarSpinner();
+
     fetch(url)
     .then( respuesta => respuesta.json())
     .then(resultado => {
@@ -89,7 +93,7 @@ function consultarAPI() {
 function mostrarCotizacion(cotizacion) {
 
     limpiarHTML(); 
-    
+
     const {PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE} = cotizacion;
 
     const precio = document.createElement('p');
@@ -121,6 +125,20 @@ function limpiarHTML() {
     while(resultado.firstChild) {
         resultado.removeChild(resultado.firstChild);
     }
+}
+
+function mostrarSpinner() {
+    limpiarHTML();
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+
+    spinner.innerHTML = `
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    `;
+
+    resultado.appendChild(spinner);
 }
 
 
