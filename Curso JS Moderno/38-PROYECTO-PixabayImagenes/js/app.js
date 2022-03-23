@@ -6,7 +6,6 @@ window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
 }
 
-url = 'https://pixabay.com/api/';
 
 function validarFormulario(e) {
     e.preventDefault(e);
@@ -17,6 +16,8 @@ function validarFormulario(e) {
         mostrarAlerta('Agrega un término de búsqueda');
         return;
     }
+
+    buscarImagenes(terminoBusqueda);
 }
 
 function mostrarAlerta(mensaje) {
@@ -38,4 +39,20 @@ function mostrarAlerta(mensaje) {
             alerta.remove();
         }, 3000);
     }
+}
+
+function buscarImagenes(termino) {
+    const key = '26280171-c13bc0618d0a68a606c80e693';
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}`;
+
+    fetch(url)
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            const {hits} = resultado;
+            mostrarImagenes(hits);
+        });
+}
+
+function mostrarImagenes(imagenes) {
+    
 }
