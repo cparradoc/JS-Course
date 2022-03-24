@@ -1,5 +1,6 @@
-const url = '../db.json';
+const url = 'http://127.0.0.1:5500/44-PROYECTO-CRM-CRUD-REST/db.json';
 
+//Cuendo se crea un nuevo cliente
 export const nuevoCliente =  async (cliente) => {
     try {
         await fetch(url, {
@@ -10,6 +11,17 @@ export const nuevoCliente =  async (cliente) => {
             }
         });
         window.location.href = 'index.html';
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+//Obtener lista de clientes
+export const obtenerClientes = async () => {
+    try {
+        const resultado = await fetch(url);
+        const clientes = await resultado.json();
+        return clientes;
     } catch(error) {
         console.log(error);
     }
