@@ -5,7 +5,9 @@ import './App.css';
 function App() {
   return (
     <Fragment>
-      <Header/>
+      <Header
+        titulo="Cotizador de Préstamos"
+      />
     </Fragment>
   );
 }
