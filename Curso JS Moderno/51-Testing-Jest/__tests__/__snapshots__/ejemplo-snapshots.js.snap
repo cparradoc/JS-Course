@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing al cliente Es Carlos 1`] = `
+Object {
+  "balance": 150000,
+  "nombre": "Carlos 2",
+  "tipo": "Premium",
+}
+`;
