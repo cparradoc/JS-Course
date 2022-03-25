@@ -9,6 +9,7 @@
   "author": "Carlos P",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
     "jest": "^27.5.1"
   }
 }
