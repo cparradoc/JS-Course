@@ -21,6 +21,7 @@ const Formulario = (props) => {
                   <label>Plazo para Pagar</label>
                   <select 
                       className="u-full-width"
+                      onChange={e => props.guardarPlazo(parseInt(e.target.value))}
                   >
                       <option value="">Seleccionar</option>
                       <option value="3">3 meses</option>
