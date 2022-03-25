@@ -1,12 +1,25 @@
-import React from 'react'
 
-const Formulario = (props) => {
+import React, {useState} from 'react'
 
+const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo}) => {
 
+    //Definir state
+    const [error, guardarError] = useState(false);
 
+    //Cuando el usuario hace submit
+    const calcularPrestamos = e => {
+        e.preventDefault();
+
+        //Validar
+        if(cantidad === 0 || plazo === '') {
+            guardarError(true);
+        }
+
+        //Realizar cotización
+    }
 
     return (
-        <form>
+        <form onSubmit={calcularPrestamos}>
           <div className="row">
               <div>
                   <label>Cantidad Prestamo</label>
@@ -14,14 +27,14 @@ const Formulario = (props) => {
                       className="u-full-width" 
                       type="number" 
                       placeholder="Ejemplo: 3000" 
-                      onChange={e => props.guardarCantidad(parseInt(e.target.value))}
+                      onChange={e => guardarCantidad(parseInt(e.target.value))}
                   />
               </div>
               <div>
                   <label>Plazo para Pagar</label>
                   <select 
                       className="u-full-width"
-                      onChange={e => props.guardarPlazo(parseInt(e.target.value))}
+                      onChange={e => guardarPlazo(parseInt(e.target.value))}
                   >
                       <option value="">Seleccionar</option>
                       <option value="3">3 meses</option>
