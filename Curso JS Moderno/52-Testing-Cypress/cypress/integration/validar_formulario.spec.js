@@ -3,7 +3,7 @@
 describe('Validar formulario', () => {
     it('Submit al formulario y mostrar la laerta de error', () => {
 
-        cy.visit('http://127.0.0.1:5500/52-Testing-Cypress/index.html');
+        cy.visit('/index.html');
 
         cy.get('[data-cy="formulario"]').submit();
 
