@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Carga la página principal', () =>{
+describe('Llena los campos para una nueva cita', () =>{
     it('Carga la página principal', () => {
 
         cy.visit('/index.html');
