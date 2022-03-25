@@ -1,6 +1,9 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
-const Formulario = () => {
+const Formulario = (props) => {
+
+
+
 
     return (
         <form>
@@ -11,6 +14,7 @@ const Formulario = () => {
                       className="u-full-width" 
                       type="number" 
                       placeholder="Ejemplo: 3000" 
+                      onChange={e => props.guardarCantidad(parseInt(e.target.value))}
                   />
               </div>
               <div>
