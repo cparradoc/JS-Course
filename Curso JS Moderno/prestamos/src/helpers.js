@@ -1,5 +1,6 @@
 export function calcularTotal(cantidad, plazo) {
-    let totalCantidad;
+    let totalCantidad = 0;
+    let totalPlazo = 0;
 
     if(cantidad <= 1000) {
         totalCantidad = cantidad * .25;
@@ -10,4 +11,24 @@ export function calcularTotal(cantidad, plazo) {
     } else {
         totalCantidad = cantidad * .10;
     }
+
+
+    switch(plazo) {
+        case(3):
+            totalPlazo = cantidad * .05;
+            break;
+        case(6):
+            totalPlazo = cantidad * .10;
+            break;
+        case(12):
+            totalPlazo = cantidad * .15;
+            break;
+        case(24):
+            totalPlazo = cantidad * .20;
+            break;
+        default:
+            break;
+    }
+
+    return totalPlazo + totalCantidad + cantidad;
 }
