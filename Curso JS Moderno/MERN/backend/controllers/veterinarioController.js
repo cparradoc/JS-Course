@@ -1,9 +1,17 @@
+import Veterinario from "../models/Veterinario.js";
 
+const registrar = async (req, res) => {
+   // const {nombre, email, password} = req.body;
+   try {
+       //Guardar un nuevo veterinario
+       const veterinario = new Veterinario(req.body);
+       const veterinarioGuardado = await veterinario.save();
 
-const registrar = (req, res) => {
-    const {nombre, email, password} = req.body;
+   } catch (error) {
+       console.log(error);
+   }
 
-    res.json({ msg: "Registrando usuario"});
+    res.json(veterinarioGuardado);
 }
 
 const perfil =(req, res) => {
