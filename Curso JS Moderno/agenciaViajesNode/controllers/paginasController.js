@@ -2,7 +2,8 @@
 
 const paginaInicio = (req, res) => {
     res.render('inicio', {
-    pagina: 'Inicio'
+        pagina: 'Inicio',
+        clase: 'home'
     });
 };
 
