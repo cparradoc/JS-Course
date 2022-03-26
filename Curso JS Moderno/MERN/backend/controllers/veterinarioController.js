@@ -1,6 +1,8 @@
 
 
 const registrar = (req, res) => {
+    const {nombre, email, password} = req.body;
+
     res.json({ msg: "Registrando usuario"});
 }
 
