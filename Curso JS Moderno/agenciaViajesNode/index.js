@@ -23,6 +23,9 @@ app.use((req, res, next) => { //next- ya terminé, vamos al siguiente middleware
     next();
 });
 
+//Agregar body parser para leer los datos del formulario
+app.use(express.urlencoded({extended: true}));
+
 //Definir la carperta pública
 app.use(express.static('public'));
 
