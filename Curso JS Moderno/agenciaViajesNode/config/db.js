@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+/*import Sequelize from 'sequelize';
 
 const db = new Sequelize('nombre base de datos', 'nombre usuario','password', {
     host: '127.0.0.1',
@@ -16,4 +16,4 @@ const db = new Sequelize('nombre base de datos', 'nombre usuario','password', {
     operatorAliases: false
 });
 
-export default db;
+export default db;*/
