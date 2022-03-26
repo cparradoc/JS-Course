@@ -64,8 +64,13 @@ const autenticar = async (req, res) => {
         return res.status(403).json({msg: error.message});
     }
 
-    //Autenticar al usuario
-    
+    //Revisar el password
+    if(await usuario.comprobarPassword(password)) {
+        console.log('Pasword correcto');
+    }else{ 
+        const error = new Error('Password incorrecto');
+        return res.status(403).json({msg: error.message});
+    }
 
 }
 
