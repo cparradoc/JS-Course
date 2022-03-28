@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
+import {useState} from 'react';
+
 const Registrar = () => {
+
+    const [nombre, setNombre] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [repetirPassword, setRepetirPassword] = useState('');
+
     return (
         <>
             <div>
@@ -12,25 +20,25 @@ const Registrar = () => {
                         <label className="uppercase text-gray-600 block text-xl font-bold" >
                             Nombre
                         </label>
-                        <input type="text" placeholder="Tu Nombre" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" />
+                        <input type="text" placeholder="Tu Nombre" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={nombre} onChange={ e => setNombre(e.target.value)}/>
                     </div>
                     <div>
                         <label className="uppercase text-gray-600 block text-xl font-bold" >
                             Email
                         </label>
-                        <input type="email" placeholder="Email de Registro" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" />
+                        <input type="email" placeholder="Email de Registro" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={email} onChange={ e => setEmail(e.target.value)}/>
                     </div>
                     <div className="my-5">
                         <label className="uppercase text-gray-600 block text-xl font-bold" >
                             Pasword
                         </label>
-                        <input type="password" placeholder="Tu Password" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" />
+                        <input type="password" placeholder="Tu Password" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={password} onChange={ e => setPassword(e.target.value)}/>
                     </div>
                     <div className="my-5">
                         <label className="uppercase text-gray-600 block text-xl font-bold" >
                             Repetir Pasword
                         </label>
-                        <input type="password" placeholder="Repite tu Password" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" />
+                        <input type="password" placeholder="Repite tu Password" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={email} onChange={ e => setRepetirPassword(e.target.value)}/>
                     </div>
                     <input type="submit" value="Crear Cuenta" className="bg-indigo-700 w-full py-3 px-10 rounded-xl text-white uppercase font-bold mt-5 hover:cursor-pointer hover:bg-indigo-800 md:w-auto" />
                 </form>
