@@ -99,9 +99,7 @@ const olvidePassword = async (req, res) =>{
         await existeVeterinario.save();
 
         //Enviar email con instrucciones
-        emailOlvidePassword({nombre: existeVeterinario.nombre, email, token});
-        
-
+        emailOlvidePassword({nombre: existeVeterinario.nombre, email, token: existeVeterinario.token});
 
         res.json({msg: 'Hemos enviado un email con las instrucciones'});
     } catch(error) {
