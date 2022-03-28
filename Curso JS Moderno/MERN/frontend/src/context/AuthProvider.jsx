@@ -5,12 +5,14 @@ const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
 
+    const [cargando, setCargando] = useState(true);
     const [auth, setAuth] = useState({});
 
     useEffect(() => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token');
             if(!token) {
+                setCargando(false);
                 return;
             }
 
@@ -22,19 +24,19 @@ const AuthProvider = ({children}) => {
             }
 
             try {
-                const {data} = await clienteAxios.get('/veterinarios/perfil', config);
-                console.log(data);
+                const {data} = await clienteAxios('/veterinarios/perfil', config);
                 setAuth(data);
             } catch (error) {
                 console.log(error.response.data.msg);
                 setAuth({});
             }
+            setCargando(false);
         }
         autenticarUsuario();
     }, [])
 
     return(
-        <AuthContext.Provider value={{auth, setAuth}}>
+        <AuthContext.Provider value={{auth, setAuth, cargando}}>
             {children}
         </AuthContext.Provider>
     )
