@@ -1,14 +1,40 @@
 import {useState} from 'react';
 import AdminNav from "../components/AdminNav";
 import Alerta from "../components/Alerta";
+import useAuth from '../hooks/useAuth';
 
 const CambiarPassword = () => {
 
+    const {guardarPassword} = useAuth;
+
     const [alerta, setAlerta] = useState({});
+    const [password, setPassword] = useState({
+        pwd_actual: '',
+        pwd_nuevo: ''
+    });
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        if(Object.values(password).some(campo => campo === '')) {
+            setAlerta({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            });
+            return;
+        }
+
+        if(password.pwd_nuevo.length < 6) {
+            setAlerta({
+                msg: 'El password tiene que tener mínimo 6 caracteres',
+                error: true
+            });
+            return;
+        }
+
+        guardarPassword(password);
     }
+
 
     const {msg} = alerta;
 
@@ -25,12 +51,18 @@ const CambiarPassword = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="my-3">
                         <label className="uppercase font-bold text-gray-600">Password Actual</label>
-                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="nombre" placeholder='Escribe tu Password Actual'/>
+                        <input type="password" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="pwd_actual" placeholder='Escribe tu Password Actual' onChange={e => setPassword({
+                            ...password,
+                            [e.target.name] : e.target.value
+                        })}/>
                     </div>
 
                     <div className="my-3">
                         <label className="uppercase font-bold text-gray-600">Password Nuevo</label>
-                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="nombre" placeholder='Escribe tu Password Nuevo'/>
+                        <input type="password" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="pwd_nuevo" placeholder='Escribe tu Password Nuevo' onChange={e => setPassword({
+                            ...password,
+                            [e.target.name] : e.target.value
+                        })}/>
                     </div>
 
                     <input type="submit" value="Actualizar Password" className="bg-indigo-700 px-10 py-3 font-bold text-white rounded-lg uppercase w-full mt-5" />
