@@ -180,6 +180,29 @@ const actualizarPerfil = async (req, res) => {
 };
 
 const actualizarPassword = async (req, res) => {
+    //leer datos
+    const { id } = req.veterinario;
+    const { pwd_actual, pwd_nuevo} = req.body;
+    const veterinario = await Veterinario.findById(id);
+
+    //comprobar que el veterinario existe
+    if(!veterinario) {
+        const error = new Error('Hubo un error');
+        return res.status(404).json({msg: error.message});
+
+    } 
+
+    //comprobar su password
+    if(await veterinario.comprobarPassword(pwd_actual)) {
+        veterinario.password = pwd_nuevo;
+        await veterinario.save();
+        registrar.json({msg: 'Password almacenado correctamente'});
+    } else {
+        const error = new Error('Password incorrecto');
+        return res.status(404).json({msg: error.message});
+    }
+
+    //almacenar el nuevo password
 
 }
 
