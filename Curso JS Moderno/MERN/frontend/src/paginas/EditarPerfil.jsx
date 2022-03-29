@@ -31,7 +31,7 @@ const EditarPerfil = () => {
 
                     <div className="my-3">
                         <label className="uppercase font-bold text-gray-600">Sitio Web</label>
-                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="web" value={perfil.web ||''} onChange={e => setWeb({
+                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="web" value={perfil.web ||''} onChange={e => setPerfil({
                             ...perfil,
                             [e.target.name] : e.target.value
                         })}/>
@@ -39,7 +39,7 @@ const EditarPerfil = () => {
 
                     <div className="my-3">
                         <label className="uppercase font-bold text-gray-600">Teléfono</label>
-                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="telefono" value={perfil.telefono ||''} onChange={e => setTelefono({
+                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="telefono" value={perfil.telefono ||''} onChange={e => setPerfil({
                             ...perfil,
                             [e.target.name] : e.target.value
                         })}/>
@@ -47,7 +47,7 @@ const EditarPerfil = () => {
 
                     <div className="my-3">
                         <label className="uppercase font-bold text-gray-600">Email</label>
-                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="email" value={perfil.email ||''} onChange={e => setEmail({
+                        <input type="text" className="border bg-gray-50 p-2 mt-5 w-full rounded-lg" name="email" value={perfil.email ||''} onChange={e => setPerfil({
                             ...perfil,
                             [e.target.name] : e.target.value
                         })}/>
