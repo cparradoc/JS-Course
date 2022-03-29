@@ -7,12 +7,12 @@ const Formulario = () => {
     const[nombre, setNombre] = useState('');
     const[propietario, setPropietario] = useState('');
     const[email, setEmail] = useState('');
-    const[fecha, setFecha] = useState(Date.now());
+    const[fecha, setFecha] = useState('');
     const[sintomas, setSintomas] = useState('');
 
     const [alerta, setAlerta] = useState({});
 
-    const{pacientes} = usePacientes();
+    const {guardarPaciente} = usePacientes();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -20,8 +20,11 @@ const Formulario = () => {
         //Validar el formulario
         if([nombre, propietario, email, fecha, sintomas].includes('')) {
             setAlerta({msg: 'Todos los campos son obligatorios', error: true});
+            return;
         }
-        return;
+
+        setAlerta({});
+        guardarPaciente({nombre, propietario, email, fecha, sintomas});
     }
 
     const {msg} = alerta;
