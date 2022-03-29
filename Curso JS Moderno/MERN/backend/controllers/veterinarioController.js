@@ -150,6 +150,10 @@ const nuevoPassword = async (req, res) =>{
 
 }
 
+const actualizarPerfil = (req, res) => {
+
+}
+
 export {
     registrar,
     perfil,
@@ -157,5 +161,6 @@ export {
     autenticar,
     olvidePassword, 
     comprobarToken, 
-    nuevoPassword
+    nuevoPassword,
+    actualizarPerfil
 };
