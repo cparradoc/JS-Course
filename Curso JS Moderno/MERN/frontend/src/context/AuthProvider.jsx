@@ -72,7 +72,30 @@ const AuthProvider = ({children}) => {
 
     
     const guardarPassword = async datos => {
+        const token = localStorage.getItem('token');
+        if(!token) {
+            setCargando(false);
+            return;
+        }
 
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Athorization: `Bearer ${token}`
+            }
+        }
+
+        try {
+            const url = '/veterinarios/actualizar-password'
+
+            const {data} = await clienteAxios.put(url, datos, config);
+            setAuth(data);
+        } catch (error) {
+            return {
+                msg: error.response.data.msg,
+                error: true
+            }
+        }
     }
 
     return(

@@ -177,6 +177,10 @@ const actualizarPerfil = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+const actualizarPassword = async (req, res) => {
+
 }
 
 export {
@@ -187,5 +191,6 @@ export {
     olvidePassword, 
     comprobarToken, 
     nuevoPassword,
-    actualizarPerfil
+    actualizarPerfil,
+    actualizarPassword
 };
